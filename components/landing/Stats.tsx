@@ -33,7 +33,7 @@ const stats = [
 
 export function Stats() {
   return (
-    <section className="relative px-6 py-24">
+    <section className="relative px-6 py-16 sm:py-24">
       <Reveal>
         <div className="mx-auto grid max-w-6xl grid-cols-2 gap-px overflow-hidden rounded-3xl border border-border bg-border/40 md:grid-cols-4">
           {stats.map((s, i) => (

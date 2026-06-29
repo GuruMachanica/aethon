@@ -14,8 +14,8 @@ export function Showcase() {
   const rotate = useTransform(scrollYProgress, [0, 1], [4, -4]);
 
   return (
-    <section id="platform" ref={ref} className="relative px-6 py-28">
-      <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-2">
+    <section id="platform" ref={ref} className="relative px-6 py-16 sm:py-28">
+      <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-2 lg:gap-14">
         <Reveal dir="right">
           <span className="chip mb-5">Cited. Traceable. Trusted.</span>
           <h2 className="display text-4xl font-semibold leading-tight md:text-5xl">

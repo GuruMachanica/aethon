@@ -7,9 +7,9 @@ import Link from "next/link";
 
 export function CTA() {
   return (
-    <section className="relative px-6 py-28">
+    <section className="relative px-6 py-16 sm:py-28">
       <Reveal>
-        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-border bg-surface/60 p-14 text-center backdrop-blur-xl">
+        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-border bg-surface/60 p-8 text-center backdrop-blur-xl sm:p-14">
           {/* animated conic glow */}
           <div className="aurora absolute inset-0 -z-10 opacity-40" />
           <motion.div

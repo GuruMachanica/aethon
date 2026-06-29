@@ -52,7 +52,7 @@ const features = [
 
 export function Features() {
   return (
-    <section id="features" className="relative px-6 py-28">
+    <section id="features" className="relative px-6 py-16 sm:py-28">
       <Reveal className="mx-auto mb-16 max-w-2xl text-center">
         <span className="chip mb-5">The Intelligence Layer</span>
         <h2 className="display text-4xl font-semibold md:text-5xl">
@@ -64,11 +64,11 @@ export function Features() {
         </p>
       </Reveal>
 
-      <Stagger className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <Stagger className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
         {features.map((f) => (
           <StaggerItem key={f.title}>
             <TiltCard
-              className={`group h-full p-7 ${
+              className={`group h-full p-5 sm:p-7 ${
                 f.featured ? "shadow-glow-teal" : ""
               }`}
             >

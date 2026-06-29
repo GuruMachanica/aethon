@@ -60,7 +60,7 @@ export function Navbar() {
 
         <Link
           href="/dashboard"
-          className="btn-gold sheen text-sm"
+          className="btn-gold sheen !px-4 !py-2 text-sm sm:!px-6 sm:!py-3"
         >
           <span className="relative z-10">Enter Console</span>
         </Link>

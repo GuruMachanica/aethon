@@ -26,7 +26,7 @@ const floatCards = [
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-radial-teal px-6 pt-28">
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-radial-teal px-6 pt-24 sm:pt-28">
       <div className="bg-radial-gold absolute inset-0" />
 
       {/* floating document chips */}
@@ -95,7 +95,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.1, duration: 0.8 }}
-          className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-muted"
+          className="mx-auto mt-7 max-w-2xl text-base leading-relaxed text-muted sm:text-lg"
         >
           Every drawing, manual, permit, inspection and incident report — fused into a
           single living knowledge graph. Ask it anything. Get a cited answer in seconds,
