@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: aethon-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+    # If the host has an NVIDIA GPU, this enables passthrough
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+  chromadb:
+    image: chromadb/chroma:latest
+    container_name: aethon-chromadb
+    ports:
+      - "8000:8000"
+    volumes:
+      - chroma_data:/chroma/chroma
+    restart: unless-stopped
+    environment:
+      - IS_PERSISTENT=TRUE
+
+  backend:
+    # Expects Person 2 to put their FastAPI code in a /backend folder with a Dockerfile
+    build:
+      context: ./backend
+    container_name: aethon-backend
+    ports:
+      - "8080:8080" # Backend runs on 8080 to avoid conflict with ChromaDB on 8000
+    volumes:
+      - ./backend:/app
+      - backend_db:/app/data # For SQLite
+    environment:
+      - OLLAMA_URL=http://ollama:11434
+      - CHROMA_URL=http://chromadb:8000
+    depends_on:
+      - ollama
+      - chromadb
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: aethon-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      # P3 consumes these
+      - NEXT_PUBLIC_API_URL=http://localhost:8080
+      - NEXT_PUBLIC_WS_URL=ws://localhost:8080
+      - NEXT_PUBLIC_USE_MOCK=false
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+  chroma_data:
+  backend_db:

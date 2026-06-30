@@ -76,22 +76,30 @@ AETHON wears a **"premium industrial" aesthetic** — a deep-teal abyss base lit
 
 ---
 
-## 🚀 Getting Started
+### 🚀 One-Command Boot (Full Stack)
 
-### Prerequisites
-- **Node.js 18+** and **npm**
-
-### Installation
+To run the entire AETHON intelligence platform (Next.js Frontend + FastAPI Backend + Ollama + ChromaDB) on your machine:
 
 ```bash
 # Clone the repository
 git clone https://github.com/Ashu-1126/Aethon.git
 cd Aethon
 
-# Install dependencies
-npm install
+# Run the boot script
+bash start.sh
+```
 
-# Start the dev server
+This will automatically create your environment variables, pull the local `llama3.1:8b` models, and orchestrate all containers. 
+Open **[http://localhost:3000](http://localhost:3000)** in your browser when done!
+
+---
+
+### 💻 Manual Frontend Development (Mock Mode)
+
+If you only want to work on the UI without running the AI models:
+
+```bash
+npm install
 npm run dev
 ```
 
