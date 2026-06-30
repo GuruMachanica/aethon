@@ -1,0 +1,41 @@
+/* AETHON particle background — fills its positioned parent, sits behind content */
+.aethon-particle-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.aethon-particle-bg canvas {
+  position: absolute;
+  inset: 0;
+  /* no CSS filter here — filtering an animating canvas re-rasterizes every frame */
+}
+
+/* volumetric ambient glow breathing behind the particles */
+.aethon-particle-ambient {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100vmin;
+  height: 100vmin;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle,
+    rgba(54, 233, 210, 0.12),
+    rgba(31, 184, 166, 0.06) 45%,
+    rgba(217, 177, 94, 0.04) 65%,
+    transparent 75%);
+  filter: blur(30px);
+  animation: aethonAmbientPulse 9s ease-in-out infinite;
+}
+
+@keyframes aethonAmbientPulse {
+  0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+  50% { opacity: 1; transform: translate(-50%, -50%) scale(1.12); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aethon-particle-ambient { animation: none; }
+}

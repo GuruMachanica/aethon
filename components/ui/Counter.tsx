@@ -2,17 +2,25 @@
 import { useInView, animate } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-/** Animated count-up that runs once when scrolled into view. */
+/**
+ * Animated count-up that runs once when scrolled into view.
+ * Matches the proven Stats-section behaviour.
+ */
 export function Counter({
   to,
   suffix = "",
   prefix = "",
   decimals,
+  duration = 1.6,
+  delay = 0,
 }: {
   to: number;
   suffix?: string;
   prefix?: string;
   decimals?: number;
+  duration?: number;
+  /** seconds to wait before starting (use when the element fades in first) */
+  delay?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true });
@@ -22,12 +30,13 @@ export function Counter({
   useEffect(() => {
     if (!inView) return;
     const controls = animate(0, to, {
-      duration: 1.6,
+      duration,
+      delay,
       ease: "easeOut",
       onUpdate: (v) => setVal(v),
     });
     return () => controls.stop();
-  }, [inView, to]);
+  }, [inView, to, duration, delay]);
 
   return (
     <span ref={ref}>

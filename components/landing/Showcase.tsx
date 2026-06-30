@@ -1,8 +1,9 @@
 "use client";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import { Quote, FileText, CheckCircle2 } from "lucide-react";
+import { Quote, FileText, CheckCircle2, AlertTriangle, ShieldCheck, Download } from "lucide-react";
 import { Reveal } from "@/components/motion/Reveal";
+import { FloatingLines } from "@/components/motion/FloatingLines";
 
 export function Showcase() {
   const ref = useRef<HTMLDivElement>(null);
@@ -14,8 +15,9 @@ export function Showcase() {
   const rotate = useTransform(scrollYProgress, [0, 1], [4, -4]);
 
   return (
-    <section id="platform" ref={ref} className="relative px-6 py-16 sm:py-28">
-      <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-2 lg:gap-14">
+    <section id="platform" ref={ref} className="relative px-6 py-16 sm:py-28 overflow-hidden z-10">
+      <FloatingLines idPrefix="showcase-fl" />
+      <div className="mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-2 lg:gap-14 relative z-10">
         <Reveal dir="right">
           <span className="chip mb-5">Cited. Traceable. Trusted.</span>
           <h2 className="display text-4xl font-semibold leading-tight md:text-5xl">
@@ -31,6 +33,7 @@ export function Showcase() {
               "Inline citations on every claim",
               "Confidence score per answer",
               "Outdated-source & superseded-clause flags",
+              "1-Click Compliance Export",
             ].map((t) => (
               <li key={t} className="flex items-center gap-3 text-sm text-muted">
                 <CheckCircle2 className="h-4 w-4 text-tealGlow" /> {t}
@@ -62,7 +65,13 @@ export function Showcase() {
               transition={{ delay: 0.3, duration: 0.7 }}
               className="mt-3 rounded-xl border border-teal/20 bg-surface/80 p-4 text-sm leading-relaxed"
             >
-              <Quote className="mb-2 h-4 w-4 text-gold" />
+              <div className="mb-3 flex items-center justify-between">
+                <Quote className="h-4 w-4 text-gold" />
+                <div className="inline-flex items-center gap-1 rounded-full bg-gold/10 px-2 py-0.5 text-[10px] font-medium text-gold border border-gold/20">
+                  <AlertTriangle className="h-3 w-3" />
+                  <span>Conflict Detected</span>
+                </div>
+              </div>
               <p>
                 <span className="rounded bg-gold/15 px-1 text-goldGlow">No.</span> SOP-44
                 omits continuous atmospheric monitoring required by{" "}
@@ -77,24 +86,36 @@ export function Showcase() {
               </p>
               <div className="mt-4 flex flex-wrap items-center gap-2">
                 <span className="chip">
-                  <FileText className="h-3 w-3" /> Factory_Act_1948.pdf · p.42
+                  <FileText className="h-3 w-3" /> Factory_Act_1948.pdf · p.42 <span className="ml-1 opacity-50">| Rev 4.2</span>
                 </span>
                 <span className="chip">
-                  <FileText className="h-3 w-3" /> OISD-105.pdf · p.18
+                  <FileText className="h-3 w-3" /> OISD-105.pdf · p.18 <span className="ml-1 opacity-50">| Rev 2.0</span>
                 </span>
               </div>
-              <div className="mt-4 flex items-center justify-between">
-                <span className="font-mono text-[11px] text-muted">confidence</span>
-                <div className="h-1.5 w-32 overflow-hidden rounded-full bg-border">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    whileInView={{ width: "94%" }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.6, duration: 1 }}
-                    className="h-full rounded-full bg-gradient-to-r from-teal to-tealGlow"
-                  />
+              <div className="mt-4 flex items-center justify-between border-t border-white/5 pt-4">
+                <div className="flex items-center gap-2">
+                  <span className="font-mono text-[11px] text-muted">confidence</span>
+                  <div className="h-1.5 w-24 overflow-hidden rounded-full bg-border">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "94%" }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.6, duration: 1 }}
+                      className="h-full rounded-full bg-gradient-to-r from-teal to-tealGlow"
+                    />
+                  </div>
+                  <span className="font-mono text-[11px] text-tealGlow">94%</span>
                 </div>
-                <span className="font-mono text-[11px] text-tealGlow">94%</span>
+                <div className="flex items-center gap-1.5 text-[10px] text-tealGlow/80 bg-teal/10 px-2 py-0.5 rounded-full border border-teal/20">
+                  <ShieldCheck className="h-3 w-3" />
+                  <span>SME Verified</span>
+                </div>
+              </div>
+              <div className="mt-3 flex justify-between items-center">
+                <button className="flex items-center gap-1.5 rounded text-[11px] text-muted hover:text-white transition-colors">
+                  <Download className="h-3 w-3" />
+                  Export Audit Trail
+                </button>
               </div>
             </motion.div>
           </div>
