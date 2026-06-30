@@ -29,3 +29,9 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# agents
+.agents
+
+# markdown
+task.md
