@@ -66,3 +66,18 @@ jobs:
 
       - name: Build Project
         run: npm run build
+
+  deploy:
+    name: Deploy to Production
+    needs: build-and-lint
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deployment Placeholder
+        run: |
+          echo "🚀 Preparing for deployment..."
+          echo "You haven't set up a deployment target yet."
+          echo "Add your deployment scripts or Vercel action here!"
