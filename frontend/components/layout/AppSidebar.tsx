@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import {
   Hexagon,
+  Home,
   LayoutDashboard,
   MessageSquareText,
   Share2,
@@ -20,6 +21,7 @@ import { health } from "@/lib/api";
 import { ApiError } from "@/lib/api";
 
 const nav = [
+  { href: "/",                 label: "Home",              icon: Home },
   { href: "/dashboard",        label: "Overview",          icon: LayoutDashboard },
   { href: "/copilot",           label: "Copilot",           icon: MessageSquareText },
   { href: "/knowledge-graph",   label: "Knowledge Graph",   icon: Share2 },

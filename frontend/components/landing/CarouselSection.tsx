@@ -104,7 +104,7 @@ export function CarouselSection() {
   };
 
   return (
-    <section className="relative px-6 py-16 sm:py-28">
+    <section id="zones" className="relative px-6 py-16 sm:py-28">
       <Reveal className="mx-auto mb-14 max-w-2xl text-center">
         <span className="chip mb-5">Deployed across the facility</span>
         <h2 className="display text-3xl font-semibold sm:text-4xl">

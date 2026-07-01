@@ -68,7 +68,7 @@ const stats: Stat[] = [
 
 export function Stats() {
   return (
-    <section className="relative px-6 py-16 sm:py-24">
+    <section id="problem" className="relative px-6 py-16 sm:py-24">
       {/* heading + intro */}
       <Reveal className="mx-auto mb-12 max-w-2xl text-center">
         <span className="chip mb-5">The cost of fragmented knowledge</span>
